@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>打字游戏</title>
+    <link rel="stylesheet" type="text/css" href="css/index.css"/>   
+</head>
+<body>
+    <ul class="select">
+        <li class="btn" id="start">开始游戏</li>
+        <li class="btn" id="restart">重新开始</li>
+        <li class="btn" id="sele">选择关卡</li>
+        <select name="" id="">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
+        </select>
+
+    </ul>
+    <div class="panel">
+        <div class="die">
+            <span>生命:</span><br>
+            <span>10</span>
+        </div>
+        <div class="sore">
+            <span>分数:</span><br>
+            <span>0</span>
+        </div>
+
+    </div>
+
+	<script src="js/index.js"></script>
+    <script>
+        window.onload=function(){
+			var flag=1;//防止重复点击start
+            var games=new game();
+            var start=document.getElementById('start');
+            var restart=document.getElementById('restart');
+            start.onclick=function(){
+				if(flag){
+					games.play();
+					flag=0;
+				}  
+            }
+            restart.onclick=function(){
+                location.reload();
+                games.play();
+            }
+            var select=document.getElementsByTagName("select")[0];
+            select.onchange=function(){
+                games.speed=parseInt((select[select.selectedIndex].value));
+                games.letterLen=parseInt((select[select.selectedIndex].value));
+                games.aa=parseInt((select[select.selectedIndex].value));
+                games.play();
+            }
+        }
+    </script>
+
+</body>
+</html>
